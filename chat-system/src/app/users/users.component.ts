@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import{ NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddUserComponent } from '../add-user/add-user.component';
+// import { AddUserComponent } from '../group/group.component';
 const bk_url = 'http://localhost:3000';
 @Component({
   selector: 'app-users',

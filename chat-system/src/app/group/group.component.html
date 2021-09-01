@@ -1,0 +1,140 @@
+
+  <div class="card">
+    <div class="card-header msg_head">
+      <div class="d-flex bd-highlight">
+        <div class="img_cont">
+          <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
+          <!-- <span class="online_icon"></span> -->
+        </div>
+        <div class="user_info">
+          <!-- <span>Chat with Khalid</span>
+          <p>1767 Messages</p> -->
+        </div>
+        <div class="video_cam">
+          <!-- <span><i class="fas fa-plus"></i></span> -->
+          <button ><img src="assets/groupadd.png" class="user_img" (click)=   "openModal(content)"></button>
+          <!-- <img src="assets/groupadd.png" class="user_img"> -->
+          
+        </div>
+      </div>
+      <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+      <div class="action_menu">
+        <ul>
+          <li><i class="fas fa-user-circle"></i> View profile</li>
+          <li><i class="fas fa-users"></i> Add to close friends</li>
+          <li><i class="fas fa-plus"></i> Add to group</li>
+          <li><i class="fas fa-ban"></i> Block</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-body msg_card_body">
+      <div class="card-body contacts_body">
+        <ul class="contacts">
+    
+          <li class="active" *ngFor = "let group of groups">
+            <div class="d-flex bd-highlight">
+              <div class="img_cont">
+                <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
+                <!-- <span class="online_icon"></span> -->
+                
+              </div>
+              <div class="user_info">
+                <span style= "font-variant: small-caps;">{{group.name}}</span>
+                <!-- <p>{{user.role}}</p> -->
+              </div>
+            </div>
+          </li>
+    
+          </ul>
+    </div>
+
+  </div>
+  <ng-template #content >
+
+    <div class="container-fluid h-100">
+      <div class="row justify-content-center h-100">
+        <div class="col-md-6 col-xl-8 chat">
+          <div class="form_card mb-md-3 mb-md-0 contacts_card">
+    
+                          <div class="form-header">
+                            <h2>Create Group</h2>
+                        </div>
+                        <form>
+                            <div class="row">
+                                
+                                <div class="form-group">
+                                    <span class="form-label"> Name</span>
+                                    <input class="form-control search" type="text" placeholder="User Name" [(ngModel)] = "newGroup.name" name = "groupname">
+                                </div>
+                                <!-- <div class="form-group">
+                                  <span class="form-label">Select Users</span>
+                                  <select class="form-control search" type="select" placeholder="Email"  name = "Email" [(ngModel)] = "newGroup.users" multiple >
+                                    {{selected}}
+                                    <option  *ngFor = "let item of items" >{{item.name}}</option>
+                                    <option value = "User2">Hiiii</option>
+                                    <option value = "User3">Great</option>
+                                  </select>
+                         
+                              </div> -->
+                              <div class="form-btn">
+                                <button class="submit1-btn" (click) = "addUsersGroup(addUserModal)"> Add Users</button>
+                            </div>
+                              <!-- <div class="form-group">
+                                <span class="form-label">Role</span>
+                                <input class="form-control search" type="text" placeholder="Role"  name = "Role" [(ngModel)] = "newUser.role">
+                            </div>
+                                
+                                <div class="form-group">
+                                    <span class="form-label">Password</span>
+                                    <input class="form-control search" type="password" placeholder="Password"  name = "password" [(ngModel)] = "newUser.password">
+                                </div> -->
+                               
+                            </div>
+                          
+                        </form>
+                        <div class="form-btn">
+                          <button class="submit1-btn" (click) = "addGroup()"> CREATE</button>
+                      </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+    <!-- <app-add-user #content ></app-add-user> -->
+      </ng-template>
+      <ng-template #addUserModal >
+        <div class="card" style="color: white;" >
+          <div class="card-header msg_head">
+            <div class="d-flex bd-highlight" >
+            Users
+           
+            </div>
+    
+       
+          </div>
+          <div class="card-body msg_card_body">
+            <div class="card-body contacts_body">
+              <ul class="contacts">
+    
+                <li class="active" *ngFor="let user of users"> 
+                  <div class="d-flex bd-highlight">
+                  
+                    <div class="img_cont" >
+                      <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
+                      <!-- <span class="online_icon"></span> -->
+                        <input type="checkbox" name = "options" value="{{user}}"  [(ngModel)]="user.checked">
+                    </div>
+                    <div class="user_info">
+                      <span style= "font-variant: small-caps;">{{user.userName}}</span>
+                      <p>{{user.id}}</p>
+                    </div>
+                  </div>
+                </li>
+          
+                </ul>
+          </div>
+          <div class="form-btn">
+            <button class="submit1-btn" (click)= "addGroup()"> Add Users</button>
+        </div>
+        </div>
+        </div>
+      </ng-template>

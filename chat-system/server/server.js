@@ -16,3 +16,12 @@ app.post('/login', require('./routes/loginPost'));
 app.post('/update', require('./routes/update'));
 app.post('/addUser', require('./routes/addUser'));
 app.get('/getUsers', require('./routes/getUsers'));
+app.post('/createGroup', require('./routes/createGroup'));
+app.get('/getGroups', function(req,res){
+  let fs = require('fs');
+  fs.readFile('./data/groups.json', 'utf8',function(err, data){
+    if (err) throw err;
+    let groups = JSON.parse(data)
+    res.send(groups);
+  });
+});

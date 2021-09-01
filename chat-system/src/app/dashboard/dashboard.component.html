@@ -1,0 +1,68 @@
+  <a routerLink="/room"><h3>Room</h3></a>
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center h-100">
+      <!-- Left Menu -->
+      <div class="col-md-4 col-xl-3 chat">
+        <div class="card mb-sm-3 mb-md-0 contacts_card">
+          <div class="card-header">
+            <div class="user_info">
+              <span style= "font-variant: small-caps;">{{userName}}</span>
+              <span><img src= "assets/logout13.jpg" (click) = "logout()" class="logout"></span>
+              <p>{{role}}</p>
+            </div>
+          </div>
+        <div class="card-body contacts_body">
+          <ul class="contacts">
+            <li (click) = "selectComponent('Users')">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+		              <img src="assets/user.png" class="rounded-circle user_img">
+									<!--							<span class="online_icon offline"></span> -->
+                
+								</div>
+								<div class="user_info">
+									<span>Users</span>
+									<p>1 Active Rooms</p>
+								</div>
+							</div>
+						</li>
+            <li (click) = "selectComponent('Groups')">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="assets/group.png" class="rounded-circle user_img">
+									<!-- <span class="online_icon"></span> -->
+                  
+								</div>
+								<div class="user_info">
+									<span>Groups</span>
+									<p>5 Active Groups</p>
+								</div>
+							</div>
+						</li>
+            <li>
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="assets/room.png" class="rounded-circle user_img">
+									<!-- <span class="online_icon offline"></span> --> 
+                 
+								</div>
+								<div class="user_info">
+									<span>Rooms</span>
+									<p>1 Active Rooms</p>
+								</div>
+							</div>
+						</li>
+          </ul>
+          <div class="d-flex bd-highlight">
+          </div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+      <!-- End Left menu  -->
+      <div class="col-md-8 col-xl-6 chat" >
+        <app-users *ngIf = "comp == 'Users'"></app-users>
+        <app-add-user *ngIf = "comp == 'Groups'"></app-add-user>
+      </div>
+    </div>
+  </div>

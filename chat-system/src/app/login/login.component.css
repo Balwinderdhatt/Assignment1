@@ -1,0 +1,61 @@
+body,html{
+  /* height: 100%; */
+  margin: 0;
+  background-color: #7F7FD5;
+     background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+      background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+}
+.container{
+  align-content: center;
+  height: 100%;
+}
+form{
+  margin-top: 30px;
+  align-content: center;
+}
+.form-header{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight:bold;
+}
+.submit1-btn{
+  width:100%;
+  border-radius: 20px;
+  padding: inherit;
+  background-color: #78e08f;
+  border:none
+  
+}
+.form-btn{
+  margin: inherit;
+  padding:10px;;
+  
+}
+.card{
+  margin-top: 100px;
+  height: 500px;
+  border-radius: 20px !important;
+  background-color: rgba(0,0,0,0.4) !important;
+  padding: 20px;
+  align-content: center;
+  box-shadow: 10px 10px 10px rgb(78, 71, 71);
+}
+.contacts_body{
+  padding:  0.75rem 0 !important;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+input{
+  border-radius: 15px !important;
+  background-color: rgba(0,0,0,0.3) !important;
+  border:0 !important;
+  color:white !important;
+  width: 100%;
+
+
+}
+.search:focus{
+     box-shadow:none !important;
+       outline:0px !important;
+}

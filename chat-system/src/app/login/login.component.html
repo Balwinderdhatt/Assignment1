@@ -1,0 +1,33 @@
+
+<div class="container-fluid h-100">
+  <div class="row justify-content-center h-100">
+    <div class="col-md-4 col-xl-3 chat">
+      <div class="card mb-sm-3 mb-md-0 contacts_card">
+
+                      <div class="form-header">
+                        <h2>Login</h2>
+                    </div>
+                    <form>
+                        <div class="row">
+                            
+                            <div class="form-group">
+                                <span class="form-label">User Name</span>
+                                <input class="form-control search" type="text" placeholder="User Name" [(ngModel)]="user.userName"  name = "username">
+                            </div>
+                            
+                            <div class="form-group">
+                                <span class="form-label">Password</span>
+                                <input class="form-control search" type="password" placeholder="Password"  [(ngModel)]="user.password" name = "password">
+                            </div>
+                           
+                        </div>
+                      
+                    </form>
+                    <div class="form-btn">
+                      <button class="submit1-btn" (click) ="loginFunc()"> Login</button>
+                  </div>
+                  </div>
+                </div>
+    </div>
+  </div>
+  <a routerLink="/room">Room</a>

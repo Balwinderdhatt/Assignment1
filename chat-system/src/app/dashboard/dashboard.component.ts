@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SwitchComponentService } from '../services/switch-component.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +9,15 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   comp = '';
-  constructor(private router: Router) { }
+  // this.switchComp.
+  constructor(private router: Router, public switchComp:SwitchComponentService) {
+     }
 
   ngOnInit(): void {
     this.comp = 'Users'
+    this.switchComp.event1.subscribe(() =>{
+      this.comp = this.switchComp.comp
+    })
   }
   userName = sessionStorage.getItem('userName');
   email = sessionStorage.getItem('email');
@@ -22,7 +28,8 @@ export class DashboardComponent implements OnInit {
     sessionStorage.clear()
   }
   public selectComponent(x:string){
-    this.comp = x
-    console.log(x)
+    this.switchComp.selectComponent(x);
   }
+  
 }
+

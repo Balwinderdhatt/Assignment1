@@ -39,7 +39,7 @@
 								</div>
 							</div>
 						</li>
-            <li>
+            <li (click) = "selectComponent('Rooms')">
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
 									<img src="assets/room.png" class="rounded-circle user_img">
@@ -63,6 +63,8 @@
       <div class="col-md-8 col-xl-6 chat" >
         <app-users *ngIf = "comp == 'Users'"></app-users>
         <app-group *ngIf = "comp == 'Groups'"></app-group>
+        <app-grouphome *ngIf = "comp == 'Grouphome'"></app-grouphome>
+        <app-rooms *ngIf = "comp == 'Rooms'"></app-rooms>
       </div>
     </div>
   </div>

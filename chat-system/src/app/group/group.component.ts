@@ -2,7 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import{ NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { UsersComponent } from '../users/users.component';
+import { SwitchComponentService } from '../services/switch-component.service';
 const bk_url = 'http://localhost:3000';
 @Component({
   selector: 'app-group',
@@ -24,7 +24,7 @@ users = Array();
 selectedUsers = Array();
 groups  = Array();
  x = Array()
-  constructor(private modal: NgbModal, private httpClient: HttpClient, private router:Router) { }
+  constructor(private modal: NgbModal, private httpClient: HttpClient, private router:Router ,private switchComp: SwitchComponentService) { }
 
   ngOnInit(): void {
     this.httpClient.get(bk_url + '/getGroups').subscribe((data:any)=>{
@@ -68,9 +68,10 @@ groups  = Array();
     })
     
 }
-  public select(group:any){
-    this.router.navigateByUrl('grouphome/:' + group)
-      // this.router.navigate(['grouphome' , group]);
-}
+select(component:string, group:any){
+  this.switchComp.selectComponent(component);
+  this.switchComp.selectedGroup(group);
+  // console.log(group)
+  }
   
 }

@@ -12,6 +12,7 @@ import { GroupComponent } from './group/group.component';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GrouphomeComponent } from './grouphome/grouphome.component';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GrouphomeComponent } from './grouphome/grouphome.component';
     DashboardComponent,
     UsersComponent,
     GroupComponent,
-    GrouphomeComponent
+    GrouphomeComponent,
+    RoomsComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,6 @@ body,html{
 }
 .msg_card_body{
   overflow-y: auto;
-  display: flex;
 }
 .card-header{
   border-radius: 15px 15px 0 0 !important;
@@ -89,9 +88,6 @@ background-color: rgba(0,0,0,0.3) !important;
 }
 .active{
   background-color: rgba(0,0,0,0.3);
-}
-.roomlist{
-  background-color: transparent
 }
 .user_img{
   height: 50px;
@@ -280,7 +276,4 @@ input{
   background: none;
   background-color: none;
   /* width:100px; */
-}
-.rooms{
-  background-color: rgba(0,0,0,0.3);
 }

@@ -31,8 +31,8 @@
       <div class="card-body contacts_body">
         <ul class="contacts">
     
-          <li class="active" *ngFor = "let group of groups">
-            <div class="d-flex bd-highlight">
+          <li class="active" *ngFor = "let group of groups" >
+            <div class="d-flex bd-highlight" (click) = "select(group)">
               <div class="img_cont">
                 <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
                 <!-- <span class="online_icon"></span> -->

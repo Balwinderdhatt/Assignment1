@@ -13,7 +13,7 @@
       </div>
       <div class="video_cam">
         <span><i class="fas fa-plus"></i></span>
-        <button ><img src="assets/addUser.png" class="user_img"></button>
+        <img src="assets/addUser.png" (click) = "addUsersGroup(addUserModal)" class="user_img">
         <span style= "font-variant: small-caps;">{{group.name}}</span>
         
       </div>
@@ -48,51 +48,60 @@
         </ul>
      </div>
      <div class="col-sm-4 rooms bd-highlight">
-      <ul class="contacts">
+      <ul class="contacts" >
   
-        <li class="roomlist" *ngFor = "let user of group.users" >
+        <li class="roomlist" *ngFor="let room of rooms" >
           <div class="d-flex">
-            <div class="img_cont">
-              
-                
-              
-            </div>
+          
             <div class="user_info">
-              <span style= "font-variant: small-caps;">{{user.userName}}</span>
+              <span style= "font-variant: small-caps;">{{room}}</span>
               <p></p>
             </div>
           </div>
         </li>
-  
         </ul>
      </div>
    </div>
-  <!-- <div class="card-body msg_card_body ">
-    <div class="card-body contacts_body col-md-8">
-      <ul class="contacts">
-  
-        <li class="active" *ngFor = "let user of group.users" >
-          <div class="d-flex bd-highlight">
-            <div class="img_cont">
-              <img src="assets/img_avatar.png" class="rounded-circle user_img">
-                
-              
-            </div>
-            <div class="user_info">
-              <span style= "font-variant: small-caps;">{{user.userName}}</span>
-              <p></p>
-            </div>
-          </div>
-        </li>
-  
-        </ul>
-  </div>
-  <div class= "col-md-3">
-    <ul>
-      <li>room1</li>
-      <li>room2</li>
-    </ul>
-    </div>
+  <!-- </ng-template> -->
+  <ng-template #addUserModal >
+    <div class="card" style="color: white;" >
+      <div class="card-header msg_head">
+        <div class="d-flex bd-highlight" >
+        Users
+       
+        </div>
 
-</div> -->
+   
+      </div>
+      <div class="card-body msg_card_body">
+        <div class="card-body contacts_body">
+          <ul class="contacts">
+
+            <li class="active" *ngFor="let user of users"> 
+              <div class="d-flex bd-highlight">
+              
+                <div class="img_cont" >
+                  <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
+                  <!-- <span class="online_icon"></span> -->
+                    <input type="checkbox" name = "options" value="{{user}}"  [(ngModel)]="user.checked">
+                </div>
+                <div class="msg_cotainer" style= "font-variant: small-caps; width : 100%; color: black">
+                  {{user.userName}}
+									<span class="msg_time" style="float: right;">{{user.id}}</span>
+								</div>
+                <!-- <div class="user_info">
+                  <span style= "font-variant: small-caps;">{{user.userName}}</span>
+                  <p>{{user.id}}</p>
+                </div> -->
+              </div>
+            </li>
+      
+            </ul>
+      </div>
+      <div class="form-btn">
+        <button class="submit1-btn" (click)= "addGroup()"> Add Users</button>
+    </div>
+    </div>
+    </div>
+  </ng-template>
 

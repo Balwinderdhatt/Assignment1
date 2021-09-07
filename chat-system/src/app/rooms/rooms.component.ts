@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-rooms',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modal:NgbModal) { }
 
   ngOnInit(): void {
   }
-
+createRoom(modal:any){
+this.modal.open(modal,({ windowClass: 'creteRoom' }))
+}
 }

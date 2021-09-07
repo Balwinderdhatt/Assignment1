@@ -12,7 +12,7 @@
         </div>
         <div class="video_cam">
           <span><i class="fas fa-plus"></i></span>
-          <button><img src="assets/addUser.png" class="user_img"></button>
+          <button><img src="assets/addUser.png" (click) = "createRoom(addUserModal)" class="user_img"></button>
           <!-- <img src="assets/groupadd.png" class="user_img"> -->
           
         </div>
@@ -49,3 +49,39 @@
     </div>
 
   </div>
+  </div>
+  <ng-template #addUserModal >
+    <div class="card" style="color: white;" >
+      <div class="card-header msg_head">
+        <div class="d-flex bd-highlight" >
+        Users
+       
+        </div>
+
+   
+      </div>
+      <div class="card-body msg_card_body">
+        <div class="card-body contacts_body">
+          <ul class="contacts">
+
+            <li class="active" > 
+              <div class="d-flex bd-highlight">
+              
+                <div class="img_cont" >
+                    <!-- <input type="checkbox" name = "options" value="{{user}}"  [(ngModel)]="user.checked"> -->
+                </div>
+                <div class="user_info">
+                  <!-- <span style= "font-variant: small-caps;">{{user.userName}}</span> -->
+                  <!-- <p>{{user.id}}</p> -->
+                </div>
+              </div>
+            </li>
+      
+            </ul>
+      </div>
+      <div class="form-btn">
+        <button class="submit1-btn" > Add Users</button>
+    </div>
+    </div>
+    </div>
+  </ng-template>

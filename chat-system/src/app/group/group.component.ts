@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import{ NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { SwitchComponentService } from '../services/switch-component.service';
+import { textChangeRangeIsUnchanged } from 'typescript';
 const bk_url = 'http://localhost:3000';
 @Component({
   selector: 'app-group',
@@ -18,7 +19,7 @@ newGroup ={
   id: Math.floor((Math.random() * 100) + 1)
 }
 // selected = false
-
+activeUser = sessionStorage.getItem('role');
 selectedItems = [];
 users = Array();
 selectedUsers = Array();
@@ -27,25 +28,48 @@ groups  = Array();
   constructor(private modal: NgbModal, private httpClient: HttpClient, private router:Router ,private switchComp: SwitchComponentService) { }
 
   ngOnInit(): void {
-    this.httpClient.get(bk_url + '/getGroups').subscribe((data:any)=>{
-      this.groups = data;
- 
-      console.log(this.groups)
-      
-    })
-    
-    this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
-      this.users = data;
-      this.users.map((obj)=>{
-        obj.checked = false
+    if(this.activeUser == 'Super Admin'){
+
+      this.httpClient.get(bk_url + '/getGroups').subscribe((data:any)=>{
+        this.groups = data;
+   
+        console.log(this.groups)
+        
       })
-      console.log(this.users)
-    })
+      
+      this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
+        this.users = data;
+        this.users.map((obj)=>{
+          obj.checked = false
+        })
+        console.log(this.users)
+      })
+    }else{
+      this.httpClient.get(bk_url + '/getGroups').subscribe((data:any)=>{
+        // this.groups = data;
+       data.forEach((group: { users: any[]; }) => {
+         group.users.forEach(element => {
+           if (sessionStorage.getItem('userName') == element.userName){
+             this.groups.push(group)
+           }
+         });
+       });
+        console.log(this.groups)
+        
+      })
+    }
+  
+   
   }
   
  
   openModal(content: any) {
-    this.modal.open(content, { windowClass: 'createGroup' });
+    if ((this.activeUser == 'Super Admin') || (this.activeUser == 'Group_admin')){
+      this.modal.open(content, { windowClass: 'createGroup' });
+    }else{
+      alert("You do not have permission for this")
+    }
+    
   }
   public addGroup(){
     this.selectedOptions()

@@ -17,6 +17,7 @@ app.post('/update', require('./routes/update'));
 app.post('/addUser', require('./routes/addUser'));
 app.get('/getUsers', require('./routes/getUsers'));
 app.post('/createGroup', require('./routes/createGroup'));
+app.post('/addUsertoGroup', require('./routes/addUsertoGroup'));
 app.get('/getGroups', function(req,res){
   let fs = require('fs');
   fs.readFile('./data/groups.json', 'utf8',function(err, data){

@@ -9,12 +9,7 @@ const bk_url = 'http://localhost:3000';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  private ID() {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
-    return  Math.floor(Math.random());
-  };
+
   constructor(private modal: NgbModal, private httpClient:HttpClient) { }
   newUser = {
     name : "",
@@ -25,17 +20,28 @@ export class UsersComponent implements OnInit {
 
 
   }
+  activeUser = sessionStorage.getItem('role');
   users = Array();
   ngOnInit(): void {
-    this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
-      this.users = data;
-      // console.log(this.users[0].userName)
-    })
+    if((this.activeUser == "Super Admin")||(this.activeUser == "Group_Admin")) {
+      this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
+        this.users = data;
+        // console.log(this.users[0].userName)
+      })
+    }else{
+      console.log("You do not have permission for this")
+    }
+ 
   }
   
   // users = ['User1','User2', 'User3','User4', 'User5' ]
   openModal(content: any) {
-    this.modal.open(content, { windowClass: 'dark-modal' });
+    if ((this.activeUser == "Super Admin")|| (this.activeUser == "Group_Admin")){
+      this.modal.open(content, { windowClass: 'dark-modal' });
+    }else{
+      alert("You do not have permission for this")
+    }
+    
   }
   public addUser(){
     this.newUser.id = Math.floor((Math.random() * 100) + 1);

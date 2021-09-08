@@ -48,12 +48,26 @@ export class GrouphomeComponent implements OnInit {
       this.group = data
       console.log(data.users)
     })
-    
     this.switchComp.selectedGroup(this.group)
-    // this.httpClient.get(bk_url + '/getGroups').subscribe((data:any)=>{
-    //   this.groups = data;
-    // })
-    
 }
-
+deleteUserfromGroup(user: any){
+  let userGroup = {
+    userSelected : user,
+    group : this.group
+  }
+    alert("Are u sure u wnna remove ? " + user.userName)
+    if((this.activeUser == "Super Admin")||(this.activeUser == "Group_Admin")) {
+      this.httpClient.post(bk_url + '/deleteUserfromGroup', userGroup).subscribe((data:any)=>{
+        this.ngOnInit()
+      })
+      
+    // this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
+    //   this.users = data;
+    //  
+    //   // console.log(this.users[0].userName)
+    // })
+  }else{
+    alert("You do not have permission for this")
+  }
+} 
 }

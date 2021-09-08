@@ -97,5 +97,19 @@ select(component:string, group:any){
   this.switchComp.selectedGroup(group);
   // console.log(group)
   }
+  deleteGroup(group:any){
+    alert("Are u sure u wnna delete ? " + group.name)
+    if((this.activeUser == "Super Admin")) {
+      this.httpClient.post(bk_url + '/deleteGroup', group).subscribe((data:any)=>{
+      })
+      this.httpClient.get(bk_url + '/getGroups').subscribe((data:any)=>{
+        this.groups = data;
+        window.location.reload()
+        // console.log(this.users[0].userName)
+      })
+    }else{
+      alert("You do not have permission for this")
+    }
+}
   
 }

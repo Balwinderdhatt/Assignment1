@@ -19,6 +19,8 @@ app.get('/getUsers', require('./routes/getUsers'));
 app.post('/createGroup', require('./routes/createGroup'));
 app.post('/deleteUser', require('./routes/deleteUser'));
 app.post('/addUsertoGroup', require('./routes/addUsertoGroup'));
+app.post('/deleteGroup', require('./routes/deleteGroup'));
+app.post('/deleteuserfromGroup', require('./routes/deleteuserfromGroup'));
 app.get('/getGroups', function(req,res){
   let fs = require('fs');
   fs.readFile('./data/groups.json', 'utf8',function(err, data){

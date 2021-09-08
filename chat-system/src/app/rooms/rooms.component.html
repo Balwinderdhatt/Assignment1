@@ -3,18 +3,11 @@
     <div class="card-header msg_head">
       <div class="d-flex bd-highlight">
         <div class="img_cont">
-          <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
-          <!-- <span class="online_icon"></span> -->
         </div>
         <div class="user_info">
-          <!-- <span>Chat with Khalid</span>
-          <p>1767 Messages</p> -->
         </div>
         <div class="video_cam">
-          <span><i class="fas fa-plus"></i></span>
-          <button><img src="assets/addUser.png" (click) = "createRoom(addUserModal)" class="user_img"></button>
-          <!-- <img src="assets/groupadd.png" class="user_img"> -->
-          
+          <img src="assets/addRoom.png" (click) = "createRoom(newRoom)" class="user_img">
         </div>
       </div>
       <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
@@ -31,16 +24,11 @@
       <div class="card-body contacts_body">
         <ul class="contacts">
     
-          <li class="active" >
-            <div class="d-flex bd-highlight">
-              <div class="img_cont">
-                <img src="assets/img_avatar.png" class="rounded-circle user_img">
-                <!-- <span class="online_icon"></span> -->
-                
-              </div>
+          <li class="active" *ngFor = "let room of rooms">
+            <div class="d-flex bd-highlight" (click) = "select(room)">
               <div class="user_info">
-                <span style= "font-variant: small-caps;">Rooms</span>
-                <!-- <p>{{user.role}}</p> -->
+                <span style= "font-variant: small-caps;">{{room.name}}</span>
+                <span><img class = "bin" src ="../../assets/bin.png" (click) = "deleteroom()"></span>
               </div>
             </div>
           </li>
@@ -50,13 +38,12 @@
 
   </div>
   </div>
-  <ng-template #addUserModal >
+  <ng-template #newRoom >
     <div class="card" style="color: white;" >
       <div class="card-header msg_head">
-        <div class="d-flex bd-highlight" >
-        Users
-       
-        </div>
+        <div class="d-flex bd-highlight" style="justify-content: center;">
+          <h3>Users</h3>
+          </div>
 
    
       </div>

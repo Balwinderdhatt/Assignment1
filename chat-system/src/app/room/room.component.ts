@@ -25,6 +25,9 @@ console.log(this.room.users)
     this.logoutService.logout()
   }
 
-  
+  home(){
+    this.switchComp.router.navigateByUrl('dash');
+    // console.log("hiiii")
+  }
 
 }

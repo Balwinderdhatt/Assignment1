@@ -21,11 +21,20 @@ app.post('/deleteUser', require('./routes/deleteUser'));
 app.post('/addUsertoGroup', require('./routes/addUsertoGroup'));
 app.post('/deleteGroup', require('./routes/deleteGroup'));
 app.post('/deleteuserfromGroup', require('./routes/deleteuserfromGroup'));
+app.post('/createRoom', require('./routes/createRoom'));
 app.get('/getGroups', function(req,res){
   let fs = require('fs');
   fs.readFile('./data/groups.json', 'utf8',function(err, data){
     if (err) throw err;
     let groups = JSON.parse(data)
     res.send(groups);
+  });
+});
+app.get('/getRooms', function(req,res){
+  let fs = require('fs');
+  fs.readFile('./data/rooms.json', 'utf8',function(err, data){
+    if (err) throw err;
+    let rooms = JSON.parse(data)
+    res.send(rooms);
   });
 });

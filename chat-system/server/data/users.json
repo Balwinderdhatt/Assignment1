@@ -1,2 +1,6 @@
 [{"id":2,"userName":"richard","email":"richard@abc.com","password":"smith","role":"Super Admin","valid":false},
-  {"id":3,"userName":"garry","email":"garry@abc.com","password":"sandhu","role":"Group_Assist","valid":false},{"id":3,"userName":"garry","email":"garry@abc.com","password":"sandhu","role":"Group_Assist","valid":false},{"id":83,"userName":"Hope","email":"hope@abc.com","password":"turner","role":"User","valid":false},{"userName":"Alisha","email":"alisha@abc.com","id":76,"password":"hyde","role":"User","valid":false},{"userName":"Tyler","email":"tyler@123@email.com","id":27,"password":"turner","role":"Group_Admin","valid":false}]
+  {"id":3,"userName":"garry","email":"garry@abc.com","password":"sandhu","role":"Group_Assist","valid":false},
+  {"id":3,"userName":"garry","email":"garry@abc.com","password":"sandhu","role":"Group_Assist","valid":false},
+  {"id":83,"userName":"Hope","email":"hope@abc.com","password":"turner","role":"User","valid":false},
+  {"userName":"Alisha","email":"alisha@abc.com","id":76,"password":"hyde","role":"User","valid":false},
+  {"userName":"Tyler","email":"tyler@123@email.com","id":27,"password":"welsh","role":"Group_Admin","valid":false}]

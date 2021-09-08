@@ -92,11 +92,20 @@ createnewRoom(){
   this.room.group = this.group.name;
   this.room.users = this.group.users.filter((opt: { checked: any; }) => opt.checked)
   // console.log(this.room)
-  for (let i in this.group.users){
-    this.group.users[i].checked = false;
+  if(this.activeUser !== "User"){
+    this.httpClient.post(bk_url + '/createRoom', this.room).subscribe((data:any)=>{
+      this.ngOnInit()
+      
+        })
+    }else{
+      alert("You do not have permission for this")
+    }
+
+      for (let i in this.group.users){
+        this.group.users[i].checked = false;
+      }
+      this.switchComp.selectedRoom(this.room)
+      this.router.navigateByUrl('/room')
+      this.modal.dismissAll();
   }
-  this.switchComp.selectedRoom(this.room)
-  this.router.navigateByUrl('/room')
-  this.modal.dismissAll();
-}
 }

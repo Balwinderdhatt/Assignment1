@@ -1,4 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Component, OnInit } from '@angular/core';
 import{ NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { AddUserComponent } from '../group/group.component';
@@ -55,8 +56,20 @@ export class UsersComponent implements OnInit {
         alert('Incorrect Username or Password')
       }
     })
-
-
-} 
+  }
+  deleteUser(user: any){
+    alert("Are u sure u wnna delete ? " + user.userName)
+    if((this.activeUser == "Super Admin")) {
+      this.httpClient.post(bk_url + '/deleteUser', user).subscribe((data:any)=>{
+      })
+      this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
+        this.users = data;
+        window.location.reload()
+        // console.log(this.users[0].userName)
+      })
+    }else{
+      alert("You do not have permission for this")
+    }
+  } 
  }
 

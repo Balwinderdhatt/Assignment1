@@ -33,13 +33,10 @@
     
           <li class="active" *ngFor = "let group of groups" >
             <div class="d-flex bd-highlight" (click) = "select('Grouphome',group)">
-              <div class="img_cont">
-                <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
-                <!-- <span class="online_icon"></span> -->
-                
-              </div>
+         
               <div class="user_info">
                 <span style= "font-variant: small-caps;">{{group.name}}</span>
+                <span><img class = "bin" src ="../../assets/bin.png"></span>
                 <!-- <p>{{user.role}}</p> -->
               </div>
             </div>

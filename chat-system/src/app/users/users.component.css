@@ -129,6 +129,7 @@ background-color: #c23616 !important;
 margin-top: auto;
 margin-bottom: auto;
 margin-left: 15px;
+width: -webkit-fill-available;
 }
 .user_info span{
 font-size: 20px;
@@ -276,4 +277,8 @@ input{
   background: none;
   background-color: none;
   /* width:100px; */
+}
+.bin{
+  height: 30px;
+  float: right;
 }

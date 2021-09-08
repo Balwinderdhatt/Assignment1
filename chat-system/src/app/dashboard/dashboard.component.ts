@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LogoutService } from '../services/logout.service';
 import { SwitchComponentService } from '../services/switch-component.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { SwitchComponentService } from '../services/switch-component.service';
 export class DashboardComponent implements OnInit {
   comp = '';
   // this.switchComp.
-  constructor(private router: Router, public switchComp:SwitchComponentService) {
+  constructor(private router: Router, public switchComp:SwitchComponentService, private logoutService: LogoutService) {
      }
 
   ngOnInit(): void {
@@ -22,10 +23,8 @@ export class DashboardComponent implements OnInit {
   userName = sessionStorage.getItem('userName');
   email = sessionStorage.getItem('email');
   role = sessionStorage.getItem('role');
-  public logout(){
-    alert("Succesfully logged out")
-    this.router.navigateByUrl("")
-    sessionStorage.clear()
+  logout(){
+    this.logoutService.logout()
   }
   public selectComponent(x:string){
     this.switchComp.selectComponent(x);

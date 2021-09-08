@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SwitchComponentService } from '../services/switch-component.service';
 const bk_url = 'http://localhost:3000';
@@ -13,11 +14,24 @@ export class GrouphomeComponent implements OnInit {
   users = Array();
   activeUser = sessionStorage.getItem('role');
   rooms = ["room 1", "room 2", "room 3"]
-  constructor(private modal: NgbModal,private switchComp:SwitchComponentService, private httpClient:HttpClient) { }
+  room = {
+    name : "",
+    group: "",
+    users : Array()
+  }
+  constructor(
+    private modal: NgbModal,
+    private switchComp:SwitchComponentService, 
+    private httpClient:HttpClient,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.group = this.switchComp.group 
-    console.log(this.group)
+    this.group.users.map((obj: { checked: boolean; })=>{
+      obj.checked = false
+    })
+    // console.log(this.group)
+    // console.log(this.group)
   }
   addUsersGroup(content:any){
     if((this.activeUser == "Super Admin")|| (this.activeUser == "Group_Admin")){
@@ -44,9 +58,9 @@ export class GrouphomeComponent implements OnInit {
       this.users[i].checked = false;
     }
     this.httpClient.post(bk_url + '/addUsertoGroup', this.group).subscribe((data:any)=>{
-      console.log(data)
+      // console.log(data)
       this.group = data
-      console.log(data.users)
+      // console.log(data.users)
     })
     this.switchComp.selectedGroup(this.group)
 }
@@ -60,7 +74,7 @@ deleteUserfromGroup(user: any){
       this.httpClient.post(bk_url + '/deleteUserfromGroup', userGroup).subscribe((data:any)=>{
         this.ngOnInit()
       })
-      
+  
     // this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
     //   this.users = data;
     //  
@@ -70,4 +84,19 @@ deleteUserfromGroup(user: any){
     alert("You do not have permission for this")
   }
 } 
+createRoom(x:any){
+  alert("Create Room");
+  this.modal.open(x, { windowClass: 'createRoom' });
+}
+createnewRoom(){
+  this.room.group = this.group.name;
+  this.room.users = this.group.users.filter((opt: { checked: any; }) => opt.checked)
+  // console.log(this.room)
+  for (let i in this.group.users){
+    this.group.users[i].checked = false;
+  }
+  this.switchComp.selectedRoom(this.room)
+  this.router.navigateByUrl('/room')
+  this.modal.dismissAll();
+}
 }

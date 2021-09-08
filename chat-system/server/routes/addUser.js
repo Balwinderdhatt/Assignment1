@@ -14,10 +14,10 @@ module.exports = function(req, res){
     // console.log(users)
     // console.log(user)
     let i = users.findIndex(user =>
-      (user.id == newUser.id));
+      (user.userName == newUser.userName));
       if (i !== -1){
-        newUser.id = Math.floor((Math.random() * 100) + 1);
-        // res.send({'message': 'Error'})
+        // newUser.id = Math.floor((Math.random() * 100) + 1);
+        res.send({'message': 'Username already exists'})
       }else{
         // newUser.id = ID;
         // upUser.password = users[i].password;

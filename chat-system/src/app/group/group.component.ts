@@ -105,7 +105,6 @@ select(component:string, group:any){
       this.httpClient.get(bk_url + '/getGroups').subscribe((data:any)=>{
         this.groups = data;
         window.location.reload()
-        // console.log(this.users[0].userName)
       })
     }else{
       alert("You do not have permission for this")

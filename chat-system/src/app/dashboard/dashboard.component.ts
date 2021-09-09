@@ -10,7 +10,6 @@ import { SwitchComponentService } from '../services/switch-component.service';
 })
 export class DashboardComponent implements OnInit {
   comp = '';
-  // this.switchComp.
   constructor(private router: Router, public switchComp:SwitchComponentService, private logoutService: LogoutService) {
      }
 

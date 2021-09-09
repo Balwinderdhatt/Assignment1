@@ -30,8 +30,6 @@ export class GrouphomeComponent implements OnInit {
     this.group.users.map((obj: { checked: boolean; })=>{
       obj.checked = false
     })
-    // console.log(this.group)
-    // console.log(this.group)
   }
   addUsersGroup(content:any){
     if((this.activeUser == "Super Admin")|| (this.activeUser == "Group_Admin")){
@@ -74,12 +72,6 @@ deleteUserfromGroup(user: any){
       this.httpClient.post(bk_url + '/deleteUserfromGroup', userGroup).subscribe((data:any)=>{
         this.ngOnInit()
       })
-  
-    // this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
-    //   this.users = data;
-    //  
-    //   // console.log(this.users[0].userName)
-    // })
   }else{
     alert("You do not have permission for this")
   }

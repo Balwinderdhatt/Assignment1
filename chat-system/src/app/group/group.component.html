@@ -3,17 +3,12 @@
     <div class="card-header msg_head">
       <div class="d-flex bd-highlight">
         <div class="img_cont">
-          <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
-          <!-- <span class="online_icon"></span> -->
         </div>
         <div class="user_info">
-          <!-- <span>Chat with Khalid</span>
-          <p>1767 Messages</p> -->
         </div>
         <div class="video_cam">
-          <!-- <span><i class="fas fa-plus"></i></span> -->
+
           <img src="assets/groupadd.png" class="user_img" (click)=   "openModal(content)">
-          <!-- <img src="assets/groupadd.png" class="user_img"> -->
           
         </div>
       </div>
@@ -63,31 +58,10 @@
                                     <span class="form-label"> Name</span>
                                     <input class="form-control search" type="text" placeholder="User Name" [(ngModel)] = "newGroup.name" name = "groupname">
                                 </div>
-                                <!-- <div class="form-group">
-                                  <span class="form-label">Select Users</span>
-                                  <select class="form-control search" type="select" placeholder="Email"  name = "Email" [(ngModel)] = "newGroup.users" multiple >
-                                    {{selected}}
-                                    <option  *ngFor = "let item of items" >{{item.name}}</option>
-                                    <option value = "User2">Hiiii</option>
-                                    <option value = "User3">Great</option>
-                                  </select>
-                         
-                              </div> -->
                               <div class="form-btn">
                                 <button class="submit1-btn" (click) = "addUsersGroup(addUserModal)"> Add Users</button>
                             </div>
-                              <!-- <div class="form-group">
-                                <span class="form-label">Role</span>
-                                <input class="form-control search" type="text" placeholder="Role"  name = "Role" [(ngModel)] = "newUser.role">
-                            </div>
-                                
-                                <div class="form-group">
-                                    <span class="form-label">Password</span>
-                                    <input class="form-control search" type="password" placeholder="Password"  name = "password" [(ngModel)] = "newUser.password">
-                                </div> -->
-                               
-                            </div>
-                          
+                            </div> 
                         </form>
                         <div class="form-btn">
                           <button class="submit1-btn" (click) = "addGroup()"> CREATE</button>
@@ -115,8 +89,6 @@
                   <div class="d-flex bd-highlight">
                   
                     <div class="img_cont" >
-                      <!-- <img src="assets/img_avatar.png" class="rounded-circle user_img"> -->
-                      <!-- <span class="online_icon"></span> -->
                         <input type="checkbox" name = "options" value="{{user}}"  [(ngModel)]="user.checked">
                     </div>
                     <div class="user_info">

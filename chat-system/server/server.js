@@ -1,15 +1,30 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const sockets = require('./socket');
 app.use(cors())
 var bodyParser = require('body-parser');;
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
-
+var port = 3000;
 var http = require('http').Server(app);
-var server = http.listen(3000, function(){
+var server = http.listen(port, function(){
   console.log("Server is running on port:3000")
 });
+
+const io = require("socket.io")(http,{
+  cors: {
+    origin: "http://localhost:4200",
+    methods: ["GET", "POST"]
+  }
+})
+io.on('connection', (socket) =>{
+  console.log('user Connection on port '+ port + ' : ' + socket.id)
+
+  socket.on('message', (message)=>{
+    io.emit('message', message);
+  })
+})
 
 app.use(express.static(__dirname + '/../dist/chat-system'));
 app.post('/login', require('./routes/loginPost'));

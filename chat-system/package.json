@@ -23,9 +23,12 @@
     "@ng-select/ng-select": "^7.2.0",
     "angular2-multiselect-dropdown": "^5.0.4",
     "angularjs-dropdown-multiselect": "^2.0.0-beta.10",
-    "bootstrap": "^5.1.0",
+    "bootstrap": "^5.1.1",
+    "express": "^4.17.1",
     "ng": "0.0.0",
     "rxjs": "~6.6.0",
+    "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

@@ -13,6 +13,7 @@ import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GrouphomeComponent } from './grouphome/grouphome.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { SocketService } from './services/socket.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { RoomsComponent } from './rooms/rooms.component';
     NgbModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

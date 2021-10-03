@@ -17,16 +17,17 @@ export class UsersComponent implements OnInit {
     email: "",
     password: "",
     role: "",
-    id: 0
+    
 
 
   }
   activeUser = sessionStorage.getItem('role');
   users = Array();
   ngOnInit(): void {
-    if((this.activeUser == "Super Admin")||(this.activeUser == "Group_Admin")) {
+    if((this.activeUser == "Super_Admin")||(this.activeUser == "Group_Admin")) {
       this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
         this.users = data;
+        // console.log(data)
         // console.log(this.users[0].userName)
       })
     }else{
@@ -35,7 +36,7 @@ export class UsersComponent implements OnInit {
  
   }
   openModal(content: any) {
-    if ((this.activeUser == "Super Admin")|| (this.activeUser == "Group_Admin")){
+    if ((this.activeUser == "Super_Admin")|| (this.activeUser == "Group_Admin")){
       this.modal.open(content, { windowClass: 'dark-modal' });
     }else{
       alert("You do not have permission for this")
@@ -43,7 +44,7 @@ export class UsersComponent implements OnInit {
     
   }
   public addUser(){
-    this.newUser.id = Math.floor((Math.random() * 100) + 1);
+    
     this.httpClient.post( bk_url + '/addUser', this.newUser).subscribe((data:any) =>{
       if (data.message == 'Success'){
         this.modal.dismissAll("successfully Added")
@@ -54,7 +55,7 @@ export class UsersComponent implements OnInit {
   }
   deleteUser(user: any){
     alert("Are u sure u wnna delete ? " + user.userName)
-    if((this.activeUser == "Super Admin")) {
+    if((this.activeUser == "Super_Admin")) {
       this.httpClient.post(bk_url + '/deleteUser', user).subscribe((data:any)=>{
       })
       this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{

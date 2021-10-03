@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 public loginFunc(){
   this.httpClient.post( bk_url + '/login', this.user).subscribe((data:any) =>{
     if (data.message == 'Success'){
-      sessionStorage.setItem('userName', data.data.userName);
+      sessionStorage.setItem('userName', data.data.name);
       sessionStorage.setItem('email', data.data.email);
       sessionStorage.setItem('id', data.data.id);
       sessionStorage.setItem('role', data.data.role);

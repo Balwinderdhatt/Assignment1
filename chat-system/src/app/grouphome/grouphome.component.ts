@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,10 +28,28 @@ export class GrouphomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.group = this.switchComp.group 
-    this.group.users.map((obj: { checked: boolean; })=>{
-      obj.checked = false
-    })
-  }
+    // this.users = this.group.users
+    // console.log(this.group)
+    // this.httpClient.post(bk_url + '/findUser', this.users[0]).subscribe((data:any)=>{
+    //   console.log(data)
+    // })
+  //   this.group.users.forEach((element:any) => {
+  //     console.log(element)
+  //     this.httpClient.post(bk_url + '/findUser', element).subscribe((data:any)=>{
+  //       this.users.push(data);
+  //       console.log(data)
+        // this.users.map((obj)=>{
+        //   obj.checked = false
+        // })
+  //   });
+
+  //   // console.log('current',this.group)
+  //   // this.group.users.map((obj: { checked: boolean; })=>{
+  //   //   obj.checked = false
+  //   // })
+  // })
+  // console.log("group", this.group)
+}
   addUsersGroup(content:any){
     if((this.activeUser == "Super Admin")|| (this.activeUser == "Group_Admin")){
       this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
@@ -50,12 +69,20 @@ export class GrouphomeComponent implements OnInit {
     // console.log(this.userOptions)
   }
   selectedOptions() { // right now: ['1','3']
-    this.group.users = this.users.filter(opt => opt.checked)
-    // 
+    let selectedusers = Array()
+    // let obj = {name : "", _id : ""}
+    this.users.filter(opt => opt.checked).forEach((element:any)=>{
+      let obj = {name : "", id : ""}
+      obj.name = element.name; obj.id = element._id
+      selectedusers.push(obj)
+    })
     for (let i in this.users){
       this.users[i].checked = false;
     }
-    this.httpClient.post(bk_url + '/addUsertoGroup', this.group).subscribe((data:any)=>{
+    let req = {group: this.group._id, new : selectedusers}
+    // console.log( "after selectin", selectedusers)
+
+    this.httpClient.post(bk_url + '/addUsertoGroup', req ).subscribe((data:any)=>{
       // console.log(data)
       this.group = data
       // console.log(data.users)
@@ -68,7 +95,7 @@ deleteUserfromGroup(user: any){
     group : this.group
   }
     alert("Are u sure u wnna remove ? " + user.userName)
-    if((this.activeUser == "Super Admin")||(this.activeUser == "Group_Admin")) {
+    if((this.activeUser == "Super_Admin")||(this.activeUser == "Group_Admin")) {
       this.httpClient.post(bk_url + '/deleteUserfromGroup', userGroup).subscribe((data:any)=>{
         this.ngOnInit()
       })

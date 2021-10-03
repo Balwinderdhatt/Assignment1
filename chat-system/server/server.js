@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const sockets = require('./socket');
+const MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 app.use(cors())
-var bodyParser = require('body-parser');;
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 var port = 3000;
@@ -18,33 +19,50 @@ const io = require("socket.io")(http,{
     methods: ["GET", "POST"]
   }
 })
-io.on('connection', (socket) =>{
-  console.log('user Connection on port '+ port + ' : ' + socket.id)
+const url = 'mongodb://localhost:27017';
+sockets.connect(io, port)
 
-  socket.on('message', (message)=>{
-    io.emit('message', message);
-  })
+MongoClient.connect(url, (err, client)=>{
+  if (err){
+    return console.log(err)
+  }
+  const dbName = 'chatDb';
+  const db = client.db(dbName);
+require('./routes/getUsers')(db, app);
+require('./routes/addUser')(db, app);
+require('./routes/getGroups')(db, app);
+require('./routes/findUser')(db, app);
+require('./routes/addUsertoGroup')(db, app);
+require('./routes/createGroup')(db, app);
+require('./routes/login')(db,app);
+require('./routes/deleteUser')(db, app);
+require('./routes/deleteGroup')(db, app);
+require('./routes/deleteuserfromGroup')(db,app);
+
 })
 
 app.use(express.static(__dirname + '/../dist/chat-system'));
-app.post('/login', require('./routes/loginPost'));
+
+
+
+// app.post('/login', require('./routes/loginPost'));
 app.post('/update', require('./routes/update'));
-app.post('/addUser', require('./routes/addUser'));
-app.get('/getUsers', require('./routes/getUsers'));
-app.post('/createGroup', require('./routes/createGroup'));
-app.post('/deleteUser', require('./routes/deleteUser'));
-app.post('/addUsertoGroup', require('./routes/addUsertoGroup'));
-app.post('/deleteGroup', require('./routes/deleteGroup'));
-app.post('/deleteuserfromGroup', require('./routes/deleteuserfromGroup'));
+// app.post('/addUser', require('./routes/addUser'));
+// app.get('/getUsers', require('./routes/getUsers'));
+// app.post('/createGroup', require('./routes/createGroup'));
+// app.post('/deleteUser', require('./routes/deleteUser'));
+// app.post('/addUsertoGroup', require('./routes/addUsertoGroup'));
+// app.post('/deleteGroup', require('./routes/deleteGroup'));
+// app.post('/deleteuserfromGroup', require('./routes/deleteuserfromGroup'));
 app.post('/createRoom', require('./routes/createRoom'));
-app.get('/getGroups', function(req,res){
-  let fs = require('fs');
-  fs.readFile('./data/groups.json', 'utf8',function(err, data){
-    if (err) throw err;
-    let groups = JSON.parse(data)
-    res.send(groups);
-  });
-});
+// app.get('/getGroups', function(req,res){
+//   let fs = require('fs');
+//   fs.readFile('./data/groups.json', 'utf8',function(err, data){
+//     if (err) throw err;
+//     let groups = JSON.parse(data)
+//     res.send(groups);
+//   });
+// });
 app.get('/getRooms', function(req,res){
   let fs = require('fs');
   fs.readFile('./data/rooms.json', 'utf8',function(err, data){

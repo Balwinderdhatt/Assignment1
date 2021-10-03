@@ -7,7 +7,7 @@
         <div class="user_info">
         </div>
         <div class="video_cam">
-          <img src="assets/addRoom.png" (click) = "createRoom(newRoom)" class="user_img">
+          <img src="assets/addRoom.png" (click) = "openModal(new)" class="user_img">
         </div>
       </div>
       <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
@@ -24,7 +24,7 @@
       <div class="card-body contacts_body">
         <ul class="contacts">
     
-          <li class="active" *ngFor = "let room of rooms">
+          <li class="active" *ngFor = "let room of roomsList">
             <div class="d-flex bd-highlight" (click) = "select(room)">
               <div class="user_info">
                 <span style= "font-variant: small-caps;">{{room.name}}</span>
@@ -38,33 +38,78 @@
 
   </div>
   </div>
-  <ng-template #newRoom >
+  <ng-template #new >
+    <div class="card" style="color: white;" >
+      <div class="card-header msg_head">
+        <!-- <div class="d-flex bd-highlight" style="justify-content: center;">
+          <h3>Users</h3>
+          </div> -->
+
+   
+      </div>
+      <div class="card-body msg_card_body">
+        <div class="card mb-sm-3 mb-md-0 contacts_card">
+
+          <div class="form-header">
+            <h2>New Room</h2>
+        </div>
+        <form>
+            <div class="row">
+                
+                <div class="form-group">
+                    <span class="form-label">Room Name</span>
+                    <input class="form-control search" type="text" placeholder="Room Name" [(ngModel)]="newRoom.name"  name = "newRoom">
+                </div>
+                <div class="form-group">
+                  <span class="form-label">Group</span>
+                  <!-- <select class="form-control select"  ng-change="selectedgroup(group)" ng-options="let group of groups"></select> -->
+                  <select class="form-control"  [(ngModel)]="newRoom.group" (change)="selectedgroup()"  name = "group">
+                    <option *ngFor="let group of groups" value = "{{group.name}}">{{group.name}}</option>
+                    </select>
+              </div>
+               
+            </div>
+          
+        </form>
+        <div class="form-btn">
+          <button class="submit1-btn" (click) ="createRoom()"> Create</button>
+      </div>
+      </div>
+      <!-- <div class="form-btn">
+        <button class="submit1-btn" > Create</button>
+    </div> -->
+    </div>
+    </div>
+  </ng-template>
+  <ng-template #addUserModal >
     <div class="card" style="color: white;" >
       <div class="card-header msg_head">
         <div class="d-flex bd-highlight" style="justify-content: center;">
           <h3>Users</h3>
           </div>
-
-   
       </div>
       <div class="card-body msg_card_body">
         <div class="card-body contacts_body">
           <ul class="contacts">
 
-            <li class="active" > 
+            <!-- <li class="active" *ngFor="let user of users"> 
               <div class="d-flex bd-highlight">
               
                 <div class="img_cont" >
+                    <input type="checkbox" name = "options" value="{{user}}"  [(ngModel)]="user.checked">
                 </div>
-                <div class="user_info">
-                </div>
+                <div class="msg_cotainer" style= "font-variant: small-caps; width : 100%; color: black">
+                  {{user.userName}}
+									<span class="msg_time" style="float: right;">{{user.id}}</span>
+								</div>
+
               </div>
-            </li>
+            </li> -->
       
             </ul>
       </div>
       <div class="form-btn">
-        <button class="submit1-btn" > Add Users</button>
+        <!-- <button class="submit1-btn" (click)= "addGroup()"> Add Users</button> -->
     </div>
     </div>
     </div>

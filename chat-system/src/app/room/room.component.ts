@@ -17,16 +17,31 @@ role = sessionStorage.getItem('role');
 
 messageBody = "";
 messages = Array();
+userCount = 0;
+isInRoom = false;
+
 ioConnection: any;
   ngOnInit(): void {
     this.room = this.switchComp.room
-   this.switchComp.event3.subscribe((room:any)=>{
-this.room = room
-console.log(this.room.name)
-console.log(this.room.users)
+    this.switchComp.event3.subscribe((room:any)=>{
+      this.room = room
+      console.log(this.room.name)
+      console.log(this.room.users)
    })
    this.initIoConnection()
+   this.socketService.joined((msg:any)=>{
+     console.log("return from joined",msg)
+  //    this.room = msg
+  //    if (this.room){
+  //      this.isInRoom = true
+  //    }
+  //    else{
+  //      this.isInRoom = false
+  //    }
+   })
   }
+
+
   logout(){
     this.logoutService.logout()
   }
@@ -35,6 +50,20 @@ console.log(this.room.users)
     this.switchComp.router.navigateByUrl('dash');
     // console.log("hiiii")
   }
+
+  joinRoom(){
+    this.socketService.joinRoom(this.room)
+    // console.log(this.room)
+    this.socketService.reqUsercount(this.room)
+    this.socketService.joined((msg:any)=>{console.log("return from joined",msg)})
+
+    // this.socketService.
+  }
+  leaveRoom(){
+    this.socketService.leaveRoom(this.room)
+
+  }
+
   private initIoConnection(){
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage().subscribe((message: string)=>{
@@ -42,7 +71,8 @@ console.log(this.room.users)
       console.log("message recieved???")
     })
   }
-    sendMessage(messageBody: String){
+  
+  sendMessage(messageBody: String){
   console.log(messageBody);
   if(this.messageBody){
     this.socketService.send(this.messageBody);

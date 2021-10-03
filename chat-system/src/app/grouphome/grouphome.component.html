@@ -40,7 +40,7 @@
           <!-- <div class="d-flex bd-highlight"> -->
            
             <div class="user_info">
-              <span style= "font-variant: small-caps;">{{user.userName}}</span>
+              <span style= "font-variant: small-caps;">{{user.name}}</span>
               <span><img class = "bin" src ="../../assets/bin.png" (click) = "deleteUserfromGroup(user)"></span>
               <p></p>
               
@@ -86,8 +86,8 @@
                     <input type="checkbox" name = "options" value="{{user}}"  [(ngModel)]="user.checked">
                 </div>
                 <div class="msg_cotainer" style= "font-variant: small-caps; width : 100%; color: black">
-                  {{user.userName}}
-									<span class="msg_time" style="float: right;">{{user.id}}</span>
+                  {{user.name}}
+									<!-- <span class="msg_time" style="float: right;">{{user.id}}</span> -->
 								</div>
                 <!-- <div class="user_info">
                   <span style= "font-variant: small-caps;">{{user.userName}}</span>

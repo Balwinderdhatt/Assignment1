@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { observable, Observable } from 'rxjs';
 import {io,Socket}  from 'socket.io-client';
-const bk_url = 'http://localhost:3000';
+// Socket namespace
+const bk_url = 'http://localhost:3000/chat';
 
 @Injectable({
   providedIn: 'root'

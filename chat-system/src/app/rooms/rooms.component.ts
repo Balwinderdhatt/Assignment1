@@ -64,7 +64,7 @@ selected:  any
          }
        });
      });
-      console.log(this.groups)
+      // console.log(this.groups)
       
     })
 

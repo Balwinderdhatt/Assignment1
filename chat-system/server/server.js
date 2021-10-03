@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path')
+const formidable = require('formidable');
 const sockets = require('./socket');
 const MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
@@ -38,10 +40,12 @@ require('./routes/login')(db,app);
 require('./routes/deleteUser')(db, app);
 require('./routes/deleteGroup')(db, app);
 require('./routes/deleteuserfromGroup')(db,app);
+require('./routes/upload')(formidable,app);
 
 })
 
 app.use(express.static(__dirname + '/../dist/chat-system'));
+app.use('/images' , express.static(path.join(__dirname + './images')));
 
 
 
@@ -55,12 +59,13 @@ app.post('/update', require('./routes/update'));
 // app.post('/deleteGroup', require('./routes/deleteGroup'));
 // app.post('/deleteuserfromGroup', require('./routes/deleteuserfromGroup'));
 app.post('/createRoom', require('./routes/createRoom'));
+
 // app.get('/getGroups', function(req,res){
 //   let fs = require('fs');
 //   fs.readFile('./data/groups.json', 'utf8',function(err, data){
 //     if (err) throw err;
-//     let groups = JSON.parse(data)
-//     res.send(groups);
+    // let groups = JSON.parse(data)
+    // res.send(groups);
 //   });
 // });
 app.get('/getRooms', function(req,res){

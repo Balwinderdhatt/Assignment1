@@ -12,7 +12,7 @@ export class SwitchComponentService {
   group :any;
   room: any;
   users = Array()
-  constructor(public router: Router, private httpClient:HttpClient) { }
+  constructor(public router: Router, public httpClient:HttpClient) { }
   event1 : EventEmitter<string> = new EventEmitter<string>()
   event2 : EventEmitter<any> = new EventEmitter<any>()
   event3 : EventEmitter<any> = new EventEmitter<any>()

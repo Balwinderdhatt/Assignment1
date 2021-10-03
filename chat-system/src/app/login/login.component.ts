@@ -23,7 +23,7 @@ public loginFunc(){
     if (data.message == 'Success'){
       sessionStorage.setItem('userName', data.data.name);
       sessionStorage.setItem('email', data.data.email);
-      sessionStorage.setItem('id', data.data.id);
+      sessionStorage.setItem('id', data.data._id);
       sessionStorage.setItem('role', data.data.role);
       this.router.navigateByUrl('dash');
     }else{

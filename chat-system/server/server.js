@@ -14,6 +14,7 @@ var http = require('http').Server(app);
 var server = http.listen(port, function(){
   console.log("Server is running on port:3000")
 });
+module.exports = server
 
 const io = require("socket.io")(http,{
   cors: {
@@ -33,7 +34,7 @@ MongoClient.connect(url, (err, client)=>{
 require('./routes/getUsers')(db, app);
 require('./routes/addUser')(db, app);
 require('./routes/getGroups')(db, app);
-require('./routes/findUser')(db, app);
+// require('./routes/findUser')(db, app);
 require('./routes/addUsertoGroup')(db, app);
 require('./routes/createGroup')(db, app);
 require('./routes/login')(db,app);

@@ -51,7 +51,7 @@ export class GrouphomeComponent implements OnInit {
   // console.log("group", this.group)
 }
   addUsersGroup(content:any){
-    if((this.activeUser == "Super Admin")|| (this.activeUser == "Group_Admin")){
+    if((this.activeUser == "Super_Admin")|| (this.activeUser == "Group_Admin")){
       this.httpClient.get(bk_url + '/getUsers').subscribe((data:any)=>{
         this.users = data;
         this.users.map((obj)=>{
@@ -66,6 +66,7 @@ export class GrouphomeComponent implements OnInit {
   public addGroup(){
     this.selectedOptions()
     this.modal.dismissAll();
+    this.ngOnInit()
     // console.log(this.userOptions)
   }
   selectedOptions() { // right now: ['1','3']

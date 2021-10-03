@@ -48,7 +48,7 @@ module.exports = (db, app)=>{
           res.send({'ok': group});
         });
       }else{
-        res.send({num:0, err:"duplicate items"});
+        res.send({num:0, err:"Cannot find group"});
       }
     })
   })

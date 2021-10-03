@@ -8,7 +8,7 @@ module.exports = (db, app)=>{
     product = req.body
     console.log(product)
     const collection = db.collection('users');
-    collection.find({'_id': product._id}).count((err, count)=>{
+    collection.find({'name': product.name}).count((err, count)=>{
       if (count == 0){
         collection.insertOne(product, (err, dbres)=>{
           if(err) throw err;

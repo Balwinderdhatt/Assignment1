@@ -36,11 +36,12 @@ var ObjectId = require('mongodb').ObjectID;
 module.exports = (db, app)=>{
   var result ;
   app.post('/deleteuserfromGroup', (req,res)=>{
-    console.log("deleting")
+    // console.log("deleting")
     if (!req.body){
       return sendStatus(400);
     }
     userId = new ObjectId(req.body.userSelected.id);
+    // userId = req.body.userSelected.id;
     groupId = new ObjectId(req.body.group._id)
     console.log(userId)
     console.log(groupId)

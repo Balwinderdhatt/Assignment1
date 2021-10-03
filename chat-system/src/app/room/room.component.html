@@ -53,25 +53,31 @@
 								</ul>
 							</div>
 						</div>
-						<div class="card-body msg_card_body">
-							<div class="d-flex justify-content-start mb-4" *ngFor="let message of messages">
+						<div class="card-body msg_card_body" >
+              <div *ngFor="let message of messages">
+							<div class="d-flex justify-content-start mb-4" *ngIf="message.author == [(userName)] ;else elseBlock" >
 								<div class="img_cont_msg">
 									<img src="assets/img_avatar.png" class="rounded-circle user_img_msg" >
 								</div>
-								<div class="msg_cotainer">
-									{{message}}
-									<span class="msg_time">8:40 AM, Today</span>
+								<div class="msg_cotainer" >
+									{{message.body}}
+									<span class="msg_time">{{message.author}}</span>
 								</div>
 							</div>
-							<!-- <div class="d-flex justify-content-end mb-4">
+              <ng-template #elseBlock>
+              
+							<div class="d-flex justify-content-end mb-4">
 								<div class="msg_cotainer_send">
-									Hi Khalid i am good tnx how about you?
-									<span class="msg_time_send">8:55 AM, Today</span>
+                  {{message.body}}
+									<span class="msg_time_send">{{message.author}}</span>
 								</div>
 								<div class="img_cont_msg">
 							<img src="assets/img_avatar.png" class="rounded-circle user_img_msg">
 								</div>
-							</div> -->
+							</div>
+             
+            </ng-template>
+          </div>
 							<!-- <div class="d-flex justify-content-start mb-4">
 								<div class="img_cont_msg">
 									<img src="assets/img_avatar.png" class="rounded-circle user_img_msg">

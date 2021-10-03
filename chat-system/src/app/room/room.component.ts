@@ -80,16 +80,18 @@ ioConnection: any;
 
   private initIoConnection(){
     this.socketService.initSocket();
-    this.ioConnection = this.socketService.onMessage().subscribe((message: string)=>{
+    this.ioConnection = this.socketService.onMessage().subscribe((message: any)=>{
       this.messages.push(message);
       console.log("message recieved???")
     })
   }
   
   sendMessage(messageBody: String){
-  console.log(messageBody);
+  // console.log(messageBody);
+  let message = {}
   if(this.messageBody){
-    this.socketService.send(this.messageBody);
+    let message = {body: messageBody, author : this.userName}
+    this.socketService.send(message);
     this.messageBody = "";
   }else {
     console.log("No Message")

@@ -53,14 +53,14 @@ export class SocketService {
 
  
 
-  public send(message: string){
+  public send(message: any){
     this.socket.emit('message', message)
     // console.log(message)
   }
 
   onMessage(): Observable<any>{
     let observable = new Observable(observer =>{
-      this.socket.on('message', (data:string)=>{
+      this.socket.on('message', (data:any)=>{
         observer.next(data)
         // console.log(data)
       })

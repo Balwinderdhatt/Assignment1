@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const path = require('path')
 const formidable = require('formidable');
-const sockets = require('./socket');
+
 const MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 app.use(cors())
@@ -11,26 +11,29 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 var port = 3000;
 var http = require('http').Server(app);
+const url = 'mongodb://localhost:27017';
+MongoClient.connect(url, (err, client)=>{
+  if (err){
+    return console.log(err)
+  }
+const dbName = 'chatDb';
+const db = client.db(dbName);
 var server = http.listen(port, function(){
   console.log("Server is running on port:3000")
 });
 module.exports = server
-
+const sockets = require('./socket');
 const io = require("socket.io")(http,{
   cors: {
     origin: "http://localhost:4200",
     methods: ["GET", "POST"]
   }
 })
-const url = 'mongodb://localhost:27017';
-sockets.connect(io, port)
 
-MongoClient.connect(url, (err, client)=>{
-  if (err){
-    return console.log(err)
-  }
-  const dbName = 'chatDb';
-  const db = client.db(dbName);
+sockets.connect(io, port, db)
+
+
+  
 require('./routes/getUsers')(db, app);
 require('./routes/addUser')(db, app);
 require('./routes/getGroups')(db, app);

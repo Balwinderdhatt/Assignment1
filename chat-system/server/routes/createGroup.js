@@ -11,7 +11,7 @@
 //     if (err) throw err;
 //     let groups = JSON.parse(data)
 //     console.log(groups)
-//     // console.log(user)
+//     // console.log(user) 
 //     let i = groups.findIndex(group =>
 //       (group.id == newGroup.id));
 //       if (i !== -1){

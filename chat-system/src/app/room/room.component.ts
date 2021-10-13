@@ -30,10 +30,12 @@ isInRoom = false;
 ioConnection: any;
   ngOnInit(): void {
     this.room = this.switchComp.room
+    this.messages = this.room.messages
+    console.log(this.room)
     this.switchComp.event3.subscribe((room:any)=>{
       this.room = room
-      console.log(this.room)
-      // console.log(this.room.users)
+      this.messages = this.room.messages
+   
    })
    this.initIoConnection()
   //  this.socketService.joined((msg:any)=>{
@@ -83,6 +85,7 @@ ioConnection: any;
     this.ioConnection = this.socketService.onMessage().subscribe((message: any)=>{
       this.messages.push(message);
       console.log("message recieved???")
+      console.log(this.messages)
     })
   }
   
